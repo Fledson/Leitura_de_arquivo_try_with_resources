@@ -10,18 +10,15 @@ public class Program {
     public static void main(String[] args) {
         // instanciando o caminho do arquivo
         String path = "c:\\temp\\ina.txt";
-        // carregando o fileReader
-        FileReader fr = null;
-        // carregando o bufferedReader
-        BufferedReader br = null;
 
-        // tentativa
-        try {
-            // instanciando o FileReader a partir do caminho do arquivo
-            fr = new FileReader(path);
-            // instanciando o BufferedReader a apartir do fileReader instanciado
-            br = new BufferedReader(fr);
+        /*
+          Usando try-with-resources
+          É um bloco try que declara um ou mais recursos, e garante que esses
+          recursos serão fechados ao final do bloco
 
+          p.s -> instancia das streamers diretamente no bloco try
+         */
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
             // lendo a linha do arquivo, ao chegar no fim do arquivo ele retorna null então ...
             String line = br.readLine();
 
@@ -36,18 +33,6 @@ public class Program {
         } catch (IOException e) {
             // caso erro imprima o erro
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            // tentativa de fechar o fileReader e BufferedReader
-            try {
-                if (br != null) {
-                    br.close();
-                } if (fr != null) {
-                    fr.close();
-                }
-            } catch (IOException e) {
-                // caso n der certo, imprima a pilha de errors
-                e.printStackTrace();
-            }
         }
     }
 
