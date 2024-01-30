@@ -9,7 +9,7 @@ public class Program {
 
     public static void main(String[] args) {
         // instanciando o caminho do arquivo
-        String path = "c:\\temp\\in.txt";
+        String path = "c:\\temp\\ina.txt";
         // carregando o fileReader
         FileReader fr = null;
         // carregando o bufferedReader
@@ -35,7 +35,7 @@ public class Program {
 
         } catch (IOException e) {
             // caso erro imprima o erro
-            System.out.println("Error: " + e);
+            System.out.println("Error: " + e.getMessage());
         } finally {
             // tentativa de fechar o fileReader e BufferedReader
             try {
